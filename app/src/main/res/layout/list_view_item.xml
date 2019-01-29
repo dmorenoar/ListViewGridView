@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:paddingLeft="16dp"
+    >
+
+
+    <ImageView
+        android:id="@+id/imagenPokemon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="25dp"
+        app:srcCompat="@mipmap/ic_bulbasaur" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/namePokemon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bulbasaur"
+            android:textSize="24dp"
+            android:textColor="#333" />
+
+        <TextView
+                android:id="@+id/tipoPokemon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Planta"
+                android:textSize="12dp"
+                android:textColor="#333"
+            />
+
+    </LinearLayout>
+</LinearLayout>
