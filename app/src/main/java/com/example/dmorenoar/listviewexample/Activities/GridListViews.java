@@ -86,7 +86,8 @@ public class GridListViews extends AppCompatActivity implements AdapterView.OnIt
 
 
 
-        //finalmente registramos el contexto
+        //finalmente registramos el contexto para poder trabajar con ventanas
+        //Asi detectamos el long click y es un action bar
         registerForContextMenu(this.listView);
         registerForContextMenu(this.gridView);
 
@@ -123,8 +124,8 @@ public class GridListViews extends AppCompatActivity implements AdapterView.OnIt
         inflater.inflate(R.menu.option_menu, menu);
 
         //Después de inflar recogemos la referencia a los botones que nos interesan
-        this.itemListView = menu.findItem(R.id.listViewMix);
-        this.itemGridView = menu.findItem(R.id.gridViewMix);
+        this.itemListView = menu.findItem(R.id.list_view_item);
+        this.itemGridView = menu.findItem(R.id.grid_view_item);
         return true;
 
     }
@@ -138,13 +139,27 @@ public class GridListViews extends AppCompatActivity implements AdapterView.OnIt
         MenuInflater inflater = getMenuInflater();
         //Antes de inflar le añadimos el header dependiendo del objeto que se pinche
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-        menu.setHeaderTitle(this.listaPokemons.get(info.position).getNombre());
+        menu.setHeaderTitle("Borrar a " + this.listaPokemons.get(info.position).getNombre());
 
         //inflamos
         inflater.inflate(R.menu.action_bar_menu, menu);
 
     }
 
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+    //Info contiene la informacion del objeto clicakdo
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        switch (item.getItemId()){
+            case R.id.delete_item:
+                this.deletePokemon(info.position);
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
 
     private void swicthListGridView(int option){
         //Cambiamos entre Grid y List view
